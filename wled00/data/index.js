@@ -735,7 +735,6 @@ ${inforow("Signal strength",i.wifi.signal +"%")}
 ${inforow("Average FPS",i.leds.fps+(" FPS"))}
 ${inforow("Free heap",(i.freeheap/1024).toFixed(1)," kB")}
 ${inforow("Environment",i.arch + " " + i.core + " (" + i.lwip + ")")}
-${inforow("Time",i.time)}
 </table>`;
 	gId('kv').innerHTML = cn;
 	//  update all sliders in Info
