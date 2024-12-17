@@ -4,10 +4,13 @@
 }
 
 :root {
-	--c-1: #111;
+	--c-1: #131419; 
+	--c-1-2:#0f1014f2;
 	--c-f: #fff;
-	--c-2: #222;
-	--c-3: #333;
+	--c-2: #131419;
+	--c-3: #272935;
+	--c-3-2: #303442;
+	--c-3-3: #272935;	/* Searchbox color */
 	--c-4: #444;
 	--c-5: #555;
 	--c-6: #666;
@@ -22,7 +25,7 @@
 	--c-y: #a90;
 	--t-b: .5;
 	--c-o: rgba(34, 34, 34, .9);
-	--c-tb : rgba(34, 34, 34, var(--t-b));
+	--c-tb : rgba(39, 41, 53, var(--t-b));
 	--c-tba: rgba(102, 102, 102, var(--t-b));
 	--c-tbh: rgba(51, 51, 51, var(--t-b));
 	/*following are internal*/
@@ -119,9 +122,23 @@ button {
 	top: 0;
 	left: 0;
 	right: 0;
-	background: var(--c-tb);
+	background-color: #131419;
 	z-index: 1;
 }
+.wrapper::after {
+	content: "";
+	display: block;
+	position: absolute;
+	bottom: -10px; /* Adjust for fade height */
+	left: 0;
+	width: 100%;
+	height: 10px; /* Adjust fade height */
+	background: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(19, 20, 25, 0.5)); 
+	/* Adjust the second color for the desired full-color fade effect */
+	pointer-events: none;
+}
+
+
 
 .icons {
 	font-family: 'WIcons';
@@ -284,7 +301,20 @@ button {
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	background-color: var(--c-tb);
+	background-color: #131419;
+
+}
+.bot::before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: -19.5px; /* Adjust for fade height */
+	left: 0;
+	width: 100%;
+	height: 20px; /* Adjust fade height */
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(19, 20, 25, 0.5)); 
+	/* Adjust the second color for the desired full-color fade effect */
+	pointer-events: none;
 }
 
 .tab button {
@@ -309,12 +339,12 @@ button {
 }
 
 .tab button:hover {
-	background-color: var(--c-tbh);
-	color: var(--c-e);
+	background-color: var(--c-2); /* Hover */
+	color: var(--c-e); /* Icoon hover */
 }
 
 .tab button.active {
-	background-color: var(--c-tba) !important;
+	background-color: var(--c-2) !important;
 	color: var(--c-f);
 }
 
@@ -440,6 +470,51 @@ button {
 	padding-bottom: 2px;
 }
 
+/* Style for the slider container 
+.slider {
+	display: flex;
+	align-items: center;
+	gap: 8px;  
+	position: relative;
+} 
+*/
+
+/* Info button styling */
+.info-btn {
+	position: absolute; /* Positioning it absolutely */
+	right: 10px; /* Align it to the right edge */
+	top: 39%; /* Vertically center it */
+	transform: translateY(-50%); /* Ensure vertical centering */
+	background: var(--c-2); /* Same background as slider */
+	border: 1px solid var(--c-3); /* Border matching theme */
+	color: var(--text-color); /* Text color */
+	padding: 6px;
+	border-radius: 0px; /* Circular button */
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	box-sizing: border-box;
+}
+
+/* Icon size inside the button */
+.info-btn i {
+	font-size: 20px;
+	line-height: 20px;
+}
+
+.icons.info-btn {
+    display: inline-block; /* Ensures it behaves like a button */
+    padding: 10px;         /* Matches the button padding */
+    border: none;          /* Removes any default button styles */
+    background: none;      /* Removes background styles */
+    cursor: pointer;       /* Indicates clickability */
+    text-align: center;
+    user-select: none;     /* Prevents text selection */
+}
+
 /* Slider wrapper div */
 .sliderwrap {
 	height: 30px;
@@ -562,7 +637,7 @@ button {
 	bottom: 0;
 	right: 0;
 	top: calc(var(--th) - 1px);
-	background-color: var(--c-o);
+	background-color: var(--c-1-2);
 	transform: translateY(100%);
 	transition: transform .4s;
 	padding: 8px;
@@ -790,6 +865,18 @@ input[type=range]::-moz-range-thumb {
 	margin: 4px auto 0 !important;
 	max-width: max-content;
 }
+
+
+.hidden-btn button{
+    display: none;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
 
 /* buttons */
 .btn {
@@ -1159,7 +1246,7 @@ TD .revchkl {
 	bottom: 0;
 	left: 0;
 	background-color: var(--c-3);
-	border: 1px solid var(--c-2);
+	border: 1px solid var(--c-5);
 }
 
 .radiomark {
@@ -1411,18 +1498,19 @@ dialog {
 }
 
 .fnd input[type="text"] {
-	display: block;
-	width: 100%;
-	box-sizing: border-box;
-	padding: 8px 40px 8px 44px;
-	margin: 4px auto 12px;
-	text-align: left;
-	border-radius: 21px;
-	background: var(--c-2);
-	border: 1px solid var(--c-3);
-	-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-	filter: grayscale(100%);
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 40px 8px 44px;
+    margin: 4px auto 12px;
+    text-align: left;
+    border-radius: 21px;
+    background: var(--c-3-3) !important; /* Custom background color */
+    border: 1px solid var(--c-3-3) !important; /* Custom border color */
+    -webkit-filter: none; /* Disable grayscale */
+    filter: none; /* Disable grayscale */
 }
+
 
 .fnd input[type="text"]:focus {
 	background-color: var(--c-4);

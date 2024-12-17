@@ -11,38 +11,59 @@
 </head>
 <body onload="onLoad()">
 
-<div id="cv" class="overlay">Loading WLED UI...</div>
-<noscript><div class="overlay" style="opacity:1;">Sorry, WLED UI needs JavaScript!</div></noscript>
-<div id="bg"></div>
+	<div id="cv" class="overlay">Loading WLED UI...</div>
 
-<div class="wrapper" id="top">
-	<div class="tab top">
-		<div class="btnwrap">
-			<button id="buttonPower" onclick="togglePower()" class="tgl"><i class="icons">&#xe08f;</i><p class="tab-label">Power</p></button>
-			<button id="buttonNl" onclick="toggleNl()"><i class="icons">&#xe2a2;</i><p class="tab-label">Timer</p></button>
-			<button id="buttonSync" onclick="toggleSync()"><i class="icons">&#xe116;</i><p class="tab-label">Sync</p></button>
-			<button id="buttonSr" onclick="toggleLiveview()"><i class="icons">&#xe410;</i><p class="tab-label">Peek</p></button>
-			<button id="buttonI" onclick="toggleInfo()"><i class="icons">&#xe066;</i><p class="tab-label">Info</p></button>
-			<button id="buttonNodes" onclick="toggleNodes()"><i class="icons">&#xe22d;</i><p class="tab-label">Nodes</p></button>
-			<button onclick="window.location.href=getURL('/settings');"><i class="icons">&#xe0a2;</i><p class="tab-label">Config</p></button>
-			<button id="buttonPcm" onclick="togglePcMode(true)"><i class="icons">&#xe23d;</i><p class="tab-label">PC Mode</p></button>
-		</div>
-		<div id="briwrap">
-			<p class="hd">Brightness</p>
-			<div class="slider">
-				<i class="icons slider-icon" onclick="tglTheme()" style="transform: translateY(2px);">&#xe2a6;</i>
-				<div class="sliderwrap il">
-					<input id="sliderBri" onchange="setBri()" oninput="updateTrail(this)" max="255" min="1" type="range" value="128" />
-					<div class="sliderdisplay"></div>
-				</div>
-				<output class="sliderbubble"></output>
+	<noscript>
+		<div class="overlay" style="opacity:1;">Sorry, WLED UI needs JavaScript!</div>
+	</noscript>
+	<div id="bg"></div>
+	
+			<!-- Hidden buttons -->
+			<div class="hidden-btn">
+				<button class="hidden-btn" id="buttonPcm"></button>
+				<button class="hidden-btn" id="buttonNl"></button>
+				<button class="hidden-btn" id="buttonSync"></button>
 			</div>
+	
+	
+	<div class="wrapper" id="top">
+		<div class="tab top">
+			<div id="briwrap">
+				<p class="hd">Brightness</p>
+				<div class="slider">
+					<i class="icons slider-icon" style="transform: translateY(5px);">&#xe2a6;</i>
+					<div class="sliderwrap il">
+						<input id="sliderBri" onchange="setBri()" oninput="updateTrail(this)" max="255" min="1" type="range"
+							value="128" />
+						<div class="sliderdisplay"></div>
+					</div>
+					<output class="sliderbubble"></output>
+				</div>
+			</div>
+
+			<!-- Info button positioned to the right -->
+			<i class="icons info-btn tgl" onclick="toggleInfo()">&#xe066;</i>
+
+		<!--	<button id="buttonI" onclick="toggleInfo()" class="tgl info-btn"><i class="icons">&#xe066;</i> -->
+				<p class="tab-label"></p>
+			</button>
+	
+	
+	
+	
+	
+	
+			<iframe id="liveview" src="about:blank"></iframe>
 		</div>
-		<iframe id="liveview" src="about:blank"></iframe>
 	</div>
-</div>
+	
+	
 
 <div class ="container">
+
+
+
+
 	<div id="Colors" class="tabcontent">
 		<div id="picker" class="noslide"></div>
 		<div id="hwrap" class="slider">
@@ -137,7 +158,7 @@
 				<input type="text" placeholder="Search" oninput="search(this,'pallist')" onfocus="search(this,'pallist')" />
 				<i class="icons clear-icon" onclick="clean(this)">&#xe38f;</i>
 				<i class="icons search-icon">&#xe0a1;</i>
-			</div>
+			</div> 				
 			<div id="pallist" class="list">
 				<div class="lstI">
 					<label class="radio schkl" onclick="loadPalettes()">
@@ -148,6 +169,7 @@
 						</div>
 					</label>
 				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -303,15 +325,32 @@
 		<img class="wi" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAFCAYAAAC5Fuf5AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABbSURBVChTlY9bDoAwDMNW7n9nwCipytQN4Z8tbrTHmDmF4oPzyldwRqp1SSdnV/NuZuzqerAByxXznBw3igkeFEfXyUuhK/yFM0CxJfyqXZEOc6/Sr9/bf7uIC5Nwd7orMvAPAAAAAElFTkSuQmCC" />
 	</div>
 	<div id="kv">Loading...</div><br>
+	<!-- Combined Button Group -->
 	<div>
-		<button class="btn ibtn" onclick="requestJson()">Refresh</button>
-		<button class="btn ibtn" onclick="toggleNodes()">Instance List</button>
-		<button class="btn ibtn" onclick="window.open(getURL('/update'),'_self');">Update WLED</button>
-		<button class="btn ibtn" id="resetbtn" onclick="cnfReset()">Reboot WLED</button>
+		<!-- Existing Modal Buttons -->
+
+
+		<!-- Moved Buttons Styled to Match -->
+   <!-- <button class="btn ibtn" id="buttonPower" onclick="togglePower()"><i class="icons">&#xe08f;</i> Power</button> -->
+
+	<button class="btn ibtn" onclick="requestJson()"><i class="icons">&#xe116;</i> Refresh</button>
+    <button class="btn ibtn" id="buttonPcm" onclick="togglePcMode(true)"><i class="icons">&#xe0a2;</i> Pc Mode</button>
+    <button class="btn ibtn" id="buttonNl" onclick="toggleNl()"><i class="icons">&#xe2a2;</i> Timer</button>
+    <button class="btn ibtn" id="buttonSync" onclick="toggleSync()"><i class="icons">&#xe116;</i> Sync</button>	
+	<button class="btn ibtn" id="buttonSr" onclick="toggleLiveview()"><i class="icons">&#xe410;</i> Peek</button>	
+	<button class="btn ibtn" id="buttonNodes" onclick="toggleNodes()"><i class="icons">&#xe22d;</i> Nodes</button>
+	<button class="btn ibtn" id="resetbtn" onclick="cnfReset()"><i class="icons">&#xe0a2;</i> Reboot</button>
+	<button class="btn ibtn" onclick="window.open(getURL('/update'),'_self');"><i class="icons">&#xe0a2;</i> Update</button>
+    <button class="btn ibtn" onclick="window.location.href=getURL('/settings');"><i class="icons">&#xe0a2;</i> Config</button>
+
+
+		
 	</div>
 	<br>
 	<span class="h">Made with&#32;<span id="heart">&#10084;&#xFE0E;</span>&#32;by&#32;<a href="https://github.com/Aircoookie/" target="_blank">Aircoookie</a>&#32;and the&#32;<a href="https://wled.discourse.group/" target="_blank">WLED community</a></span>
 </div>
+
+
 
 <div id="nodes" class="modal">
 	<button class="btn btn-xs close" onclick="toggleNodes()"><i class="icons rot45">&#xe18a;</i></button>

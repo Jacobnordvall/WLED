@@ -151,23 +151,23 @@ function cTheme(light) {
 	sCol('--c-tbh','rgba(204, 204, 204, var(--t-b))');
 	gId('imgw').style.filter = "invert(0.8)";
 	} else {
-	sCol('--c-1','#111');
-	sCol('--c-f','#fff');
-	sCol('--c-2','#222');
-	sCol('--c-3','#333');
-	sCol('--c-4','#444');
-	sCol('--c-5','#555');
-	sCol('--c-6','#666');
+	sCol('--c-1','#0f1014'); //Background
+	sCol('--c-f','#fff');  //White Text
+	sCol('--c-2','#272935'); // Palete Buttons
+	sCol('--c-3','#272935');
+	sCol('--c-4','#272935');
+	sCol('--c-5','#303442'); //button hover
+	sCol('--c-6','#303442'); // Checkmark hover
 	sCol('--c-8','#888');
 	sCol('--c-b','#bbb');
-	sCol('--c-c','#ccc');
+	sCol('--c-c','#ccc'); //Icons
 	sCol('--c-e','#eee');
 	sCol('--c-d','#ddd');
 	sCol('--c-r','#e42');
 	sCol('--c-g','#4e2');
 	sCol('--c-l','#48a');
-	sCol('--c-o','rgba(34, 34, 34, 0.9)');
-	sCol('--c-sb','#fff3'); sCol('--c-sbh','#fff5');
+	sCol('--c-o','#222222');
+	sCol('--c-sb','#272935'); sCol('--c-sbh','#272935');
 	sCol('--c-tb','rgba(34, 34, 34, var(--t-b))');
 	sCol('--c-tba','rgba(102, 102, 102, var(--t-b))');
 	sCol('--c-tbh','rgba(51, 51, 51, var(--t-b))');
@@ -1244,9 +1244,8 @@ function updatePA()
 }
 
 function updateUI()
-{
-	gId('buttonPower').className = (isOn) ? 'active':'';
-	gId('buttonNl').className = (nlA) ? 'active':'';
+{	
+		gId('buttonNl').className = (nlA) ? 'active':'';
 	gId('buttonSync').className = (syncSend) ? 'active':'';
 	gId('pxmb').style.display = (isM) ? "inline-block" : "none";
 
@@ -2729,7 +2728,9 @@ function cnfReset()
 	if (!cnfr) {
 		var bt = gId('resetbtn');
 		bt.style.color = "var(--c-r)";
-		bt.innerHTML = "Confirm Reboot";
+	
+		bt.innerHTML = '<i class="icons">&#xe390;</i>'; // Add the icon
+		bt.innerHTML += " Reboot";
 		cnfr = true; return;
 	}
 	window.location.href = getURL("/reset");
