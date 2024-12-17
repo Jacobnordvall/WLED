@@ -311,10 +311,10 @@ class UsermodBattery : public Usermod
       // info modal display names
       JsonArray infoPercentage = user.createNestedArray(F("Battery level"));
       JsonArray infoVoltage = user.createNestedArray(F("Battery voltage"));
-      JsonArray infoNextUpdate = user.createNestedArray(F("Next update"));
+     // JsonArray infoNextUpdate = user.createNestedArray(F("Next update"));
 
-      infoNextUpdate.add((nextReadTime - millis()) / 1000);
-      infoNextUpdate.add(F(" sec"));
+    //  infoNextUpdate.add((nextReadTime - millis()) / 1000);
+    //  infoNextUpdate.add(F(" sec"));
       
       if (initializing) {
         infoPercentage.add(FPSTR(_init));

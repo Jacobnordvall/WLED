@@ -482,7 +482,7 @@ button {
 /* Info button styling */
 .info-btn {
 	position: absolute; /* Positioning it absolutely */
-	right: 15px; /* Align it to the right edge */
+	right: 17px; /* Align it to the right edge */
 	top: 35%; /* Vertically center it */
 	transform: translateY(-50%); /* Ensure vertical centering */
 	background: var(--c-2); /* Same background as slider */
