@@ -10,7 +10,7 @@
 	--c-2: #131419;
 	--c-3: #272935;
 	--c-3-2: #303442;
-	--c-3-3: #272935;	/* Searchbox color */
+	--c-3-3: #36394c;
 	--c-4: #444;
 	--c-5: #555;
 	--c-6: #666;
@@ -609,7 +609,7 @@ button {
 	max-width: 90%;
 	color: var(--c-f);
 	text-align: center;
-	border-radius: 5px;
+	border-radius: 10px;
 	padding: 22px;
 	position: fixed;
 	z-index: 5;
@@ -618,6 +618,7 @@ button {
 	bottom: calc(var(--bh) + 22px);
 	font-size: 17px;
 	pointer-events: none;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7); /* Added shadow */
 }
 
 #toast.show {
@@ -897,6 +898,12 @@ input[type=range]::-moz-range-thumb {
 	border: 1px solid var(--c-3);
 	background-color: var(--c-3);
 }
+
+.btn.active
+{ 
+    background-color: var(--c-3-3) !important; /* Force background color change */
+}
+
 #segutil .btn-s:hover,
 #segutil2 .btn-s:hover,
 #putil .btn-s:hover,
@@ -907,6 +914,25 @@ input[type=range]::-moz-range-thumb {
 .btn-s {
 	width: 100%;
 	margin: 0;
+}
+.btn-infos
+{
+	padding: 8px;
+	/*margin: 10px 4px;*/
+	width: 230px;
+	font-size: 19px;
+	color: var(--c-d);
+	cursor: pointer;
+	border-radius: 25px;
+	transition-duration: .3s;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform: translate3d(0,0,0);
+	backface-visibility: hidden;
+	transform: translate3d(0,0,0);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	border: 1px solid var(--c-3);
+	background-color: var(--c-3);
 }
 .btn-icon {
 	margin: -4px 4px -1px 0;
@@ -1505,8 +1531,8 @@ dialog {
     margin: 4px auto 12px;
     text-align: left;
     border-radius: 21px;
-    background: var(--c-3-3) !important; /* Custom background color */
-    border: 1px solid var(--c-3-3) !important; /* Custom border color */
+    background: var(--c-3) !important; /* Custom background color */
+    border: 1px solid var(--c-3) !important; /* Custom border color */
     -webkit-filter: none; /* Disable grayscale */
     filter: none; /* Disable grayscale */
 }

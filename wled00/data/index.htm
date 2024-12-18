@@ -20,9 +20,14 @@
 	
 			<!-- Hidden buttons -->
 			<div class="hidden-btn">
-				<button class="hidden-btn" id="buttonPcm"></button>
-				<button class="hidden-btn" id="buttonNl"></button>
-				<button class="hidden-btn" id="buttonSync"></button>
+		    <button id="buttonPower asdasd" onclick="togglePower()" class="tgl"><i class="icons">&#xe08f;</i><p class="tab-label">Power</p></button>
+			<button id="buttonNl" onclick="toggleNl()"><i class="icons">&#xe2a2;</i><p class="tab-label">Timer</p></button>
+			<button id="buttonSync" onclick="toggleSync()"><i class="icons">&#xe116;</i><p class="tab-label">Sync</p></button>
+			<button id="buttonSr" onclick="toggleLiveview()"><i class="icons">&#xe410;</i><p class="tab-label">Peek</p></button>
+			<button id="buttonI" onclick="toggleInfo()"><i class="icons">&#xe066;</i><p class="tab-label">Info</p></button>
+			<button id="buttonNodes" onclick="toggleNodes()"><i class="icons">&#xe22d;</i><p class="tab-label">Nodes</p></button>
+			<button onclick="window.location.href=getURL('/settings');"><i class="icons">&#xe0a2;</i><p class="tab-label">Config</p></button>
+			<button id="buttonPcm" onclick="togglePcMode(true)"><i class="icons">&#xe23d;</i><p class="tab-label">PC Mode</p></button>
 			</div>
 	
 	
@@ -42,9 +47,9 @@
 			</div>
 
 			<!-- Info button positioned to the right -->
-			<i class="icons info-btn tgl" onclick="toggleInfo()">&#xe066;</i>
+			<i class="icons info-btn tgl" onclick="toggleInfo()">&#xe066;</i> 
 
-		<!--	<button id="buttonI" onclick="toggleInfo()" class="tgl info-btn"><i class="icons">&#xe066;</i> -->
+			
 				<p class="tab-label"></p>
 			</button>
 	
@@ -332,11 +337,11 @@
    <!-- <button class="btn ibtn" id="buttonPower" onclick="togglePower()"><i class="icons">&#xe08f;</i> Power</button> -->
 
 	<button class="btn ibtn" onclick="requestJson()"><i class="icons">&#xe116;</i> Refresh</button>
-    <button class="btn ibtn" id="buttonPcm" onclick="togglePcMode(true)"><i class="icons">&#xe0a2;</i> Pc Mode</button>
-    <button class="btn ibtn" id="buttonNl" onclick="toggleNl()"><i class="icons">&#xe2a2;</i> Timer</button>
-    <button class="btn ibtn" id="buttonSync" onclick="toggleSync()"><i class="icons">&#xe116;</i> Sync</button>	
-	<button class="btn ibtn" id="buttonSr" onclick="toggleLiveview()"><i class="icons">&#xe410;</i> Peek</button>	
-	<button class="btn ibtn" id="buttonNodes" onclick="toggleNodes()"><i class="icons">&#xe22d;</i> Nodes</button>
+   <!-- <button class="btn ibtn" id="buttonPcmB" onclick="togglePcMode(true)"><i class="icons">&#xe0a2;</i> Pc Mode</button> -->
+    <button class="btn ibtn" id="buttonNlB" onclick="toggleNl()"><i class="icons">&#xe2a2;</i> Timer</button>
+    <button class="btn ibtn" id="buttonSyncB" onclick="toggleSync()"><i class="icons">&#xe116;</i> Sync</button>	
+	<button class="btn ibtn" id="buttonSrB" onclick="toggleLiveview()"><i class="icons">&#xe410;</i> Peek</button>	
+	<button class="btn ibtn" onclick="toggleNodes()"><i class="icons">&#xe22d;</i> Nodes</button>
 	<button class="btn ibtn" id="resetbtn" onclick="cnfReset()"><i class="icons">&#xe116;</i> Reboot</button>
 	<button class="btn ibtn" onclick="window.open(getURL('/update'),'_self');"><i class="icons">&#xe0a2;</i> Update</button>
     <button class="btn ibtn" onclick="window.location.href=getURL('/settings');"><i class="icons">&#xe0a2;</i> Config</button>

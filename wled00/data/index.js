@@ -1,4 +1,7 @@
 //page js
+const buttonN1B = document.getElementById('buttonNlB');
+const buttonSyncB = document.getElementById('buttonSyncB');
+const buttonSrB = document.getElementById('buttonSrB');
 var loc = false, locip, locproto = "http:";
 var isOn = false, nlA = false, isLv = false, isInfo = false, isNodes = false, syncSend = false/*, syncTglRecv = true*/;
 var hasWhite = false, hasRGB = false, hasCCT = false, has2D = false;
@@ -734,7 +737,6 @@ ${inforow("Filesystem",Math.round(i.fs.u*100/i.fs.t) + "%")}
 ${inforow("Signal strength",i.wifi.signal +"%")}
 ${inforow("Average FPS",i.leds.fps+(" FPS"))}
 ${inforow("Free heap",(i.freeheap/1024).toFixed(1)," kB")}
-${inforow("Environment",i.arch + " " + i.core + " (" + i.lwip + ")")}
 </table>`;
 	gId('kv').innerHTML = cn;
 	//  update all sliders in Info
@@ -1438,11 +1440,13 @@ function readState(s,command=false)
 
 	isOn = s.on;
 	gId('sliderBri').value = s.bri;
-	nlA = s.nl.on;
-	nlDur = s.nl.dur;
+	nlA = s.nl.on;    
+    if (nlA) {buttonN1B.classList.add('active');}     // Check if nlA (the variable holding the state of the button) is true
+    nlDur = s.nl.dur;
 	nlTar = s.nl.tbri;
 	nlFade = s.nl.fade;
 	syncSend = s.udpn.send;
+	if (syncSend) {buttonSyncB.classList.add('active');}
 	if (s.pl<0)	currentPreset = s.ps;
 	else currentPreset = s.pl;
 
@@ -1784,9 +1788,11 @@ function toggleNl()
 	nlA = !nlA;
 	if (nlA)
 	{
-		showToast(`Timer active. Your light will turn ${nlTar > 0 ? "on":"off"} ${nlMode ? "over":"after"} ${nlDur} minutes.`);
+		showToast(`Timer active. Your light will turn ${nlTar > 0 ? "on":"off"} ${nlMode ? "over":"after"} ${nlDur} minutes.`);	
+		buttonN1B.classList.add('active');
 	} else {
 		showToast('Timer deactivated.');
+		buttonN1B.classList.remove('active');
 	}
 	var obj = {"nl": {"on": nlA}};
 	requestJson(obj);
@@ -1795,6 +1801,7 @@ function toggleNl()
 function toggleSync()
 {
 	syncSend = !syncSend;
+	buttonSyncB.classList.toggle('active');
 	if (syncSend) showToast('Other lights in the network will now sync to this one.');
 	else showToast('This light and other lights in the network will no longer sync.');
 	var obj = {"udpn": {"send": syncSend}};
@@ -1819,8 +1826,9 @@ function toggleLiveview()
 	gId(lvID).style.display = (isLv) ? "block":"none";
 	gId(lvID).src = (isLv) ? getURL("/" + lvID + ((wsOn) ? "?ws":"")):"about:blank";
 	gId('buttonSr').classList.toggle("active");
+	buttonSrB.classList.toggle('active');
 	if (!isLv && wsOn) ws.send('{"lv":false}');
-	size();
+	size();	
 }
 
 function toggleInfo()

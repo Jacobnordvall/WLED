@@ -16,13 +16,19 @@
 <body onload="GetV()">
 	<h2>WLED Software Update</h2>
 	<form method='POST' action='./update' id='uf' enctype='multipart/form-data' onsubmit="U()">
-		Installed version: <span class="sip">##VERSION##</span><br>
-		Download the latest binary: <a href="https://github.com/Jacobnordvall/WLED/releases" target="_blank" 
-		style="vertical-align: text-bottom; display: inline-flex;">
-		<img src="https://img.shields.io/github/release/Jacobnordvall/WLED.svg?style=flat-square"></a><br>
+		Installed version: <span class="sip">##VERSION##</span><br><br>
+		Download the latest binary: 
+		<br>
+		<a href="https://github.com/Jacobnordvall/WLED/releases" target="_blank" 
+		
+		style="vertical-align: text-bottom; display: inline-flex; width: 10px; height: 30px; align-items: center; justify-content: center;"">
+
+		<img src="https://img.shields.io/github/v/tag/jacobnordvall/WLED?style=for-the-badge&label=Release&link=https%3A%2F%2Fgithub.com%2FJacobnordvall%2FWLED%2Freleases"></a><br>
+		<br>
 		<input type='file' name='update' required><br> <!--should have accept='.bin', but it prevents file upload from android app-->
-		<button type="submit">Update!</button><br>
 		<button type="button" onclick="B()">Back</button>
+		<button type="submit">Update!</button>
+	
 	</form>
 	<div id="msg"><b>Updating...</b><br>Please do not close or refresh the page :)</div>
 </body>
