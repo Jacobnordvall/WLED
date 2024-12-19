@@ -116,3 +116,90 @@ function uploadFile(fileObj, name) {
 	fileObj.value = '';
 	return false;
 }
+
+
+// ----------------UPDATE PAGE----------------
+async function fetchLatestRelease() {
+    const apiUrl = 'https://api.github.com/repos/Jacobnordvall/WLED/releases/latest';
+    const releaseFilesDiv = document.getElementById('release-files');
+
+    try {
+        console.log("Fetching release information...");
+
+        // Set headers, including User-Agent to help avoid CORS issues
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'User-Agent': 'Mozilla/5.0 (ESP32 Web Server)' // Set a legitimate User-Agent
+            }
+        });
+
+        console.log("Response status:", response.status); // Log the response status
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch release information.');
+        }
+
+        const releaseData = await response.json();
+        console.log("Release data:", releaseData); // Log the release data
+
+        const version = releaseData.tag_name; // Get the release version/tag
+
+        // Add release files dynamically
+        const assetList = document.createElement('ul');
+        releaseData.assets.forEach((asset) => {
+            const listItem = document.createElement('li');
+
+            // Version display on the left
+            const versionElem = document.createElement('div');
+            versionElem.className = 'version';
+            versionElem.textContent = version;
+
+            // File name display on the right
+            const fileNameElem = document.createElement('div');
+            fileNameElem.className = 'file-name';
+            const link = document.createElement('a');
+            link.href = asset.browser_download_url;
+            link.className = 'release-badge';
+            link.textContent = asset.name;
+            link.target = '_blank'; // Open in a new tab
+            fileNameElem.appendChild(link);
+
+            listItem.appendChild(versionElem);
+            listItem.appendChild(fileNameElem);
+            assetList.appendChild(listItem);
+        });
+
+        releaseFilesDiv.innerHTML = ''; // Clear loading message
+        releaseFilesDiv.appendChild(assetList); // Add the release files list
+
+    } catch (error) {
+        console.error("Error fetching release information:", error); // Log the error to the console
+        releaseFilesDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+    }
+}
+
+//THIS BS BROKIE 
+function B() { window.history.back(); }
+function U() { document.getElementById("uf").style.display="none";document.getElementById("msg").style.display="block"; }
+function GetV() {/*injected values here*/}
+
+
+//Get esp type as the bs og loading is a mystery that broke.
+function fetchEspInfo() {
+    const endpoint = `${window.location.origin}/json/info`; // Dynamically determine the endpoint
+    fetch(endpoint)
+        .then((response) => {
+            if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+            return response.json();
+        })
+        .then((data) => {
+            const espArch = data.arch || "Unknown";
+            document.getElementById("esp-info").textContent = `You need the ${espArch}`+` version`;
+        })
+        .catch((error) => {
+            console.error("Error fetching ESP info:", error);
+            document.getElementById("esp-info").textContent = `Error fetching ESP info: ${error.message}`;
+        });
+}

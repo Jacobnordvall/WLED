@@ -112,7 +112,7 @@ class UMBattery
 
         float getLevel()
         {
-            return this->level;
+             return (this->level > 100.0f) ? 100.0f : this->level;  // Cap the level to 100
         }
 
         void setLevel(float level)

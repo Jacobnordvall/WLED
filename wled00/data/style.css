@@ -203,3 +203,58 @@ td {
     width: 144px;
   }
 }
+
+#release-files {
+  display: inline-block;
+  width: 354px;
+  margin-top: -15px;
+  background: inherit;
+  color: inherit;
+}
+
+#release-files ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#release-files ul li {
+  display: flex;
+  justify-content: space-between;
+  margin: 3px 0px;
+  padding: 0px;
+  background-color: #272935;
+  border-radius: 0px;
+}
+
+#release-files ul li .version {
+  flex: 0.5;
+  color: #808080;
+  font-size: 14px;
+  padding-left: 10px;
+  text-align: left;
+}
+
+#release-files ul li .file-name {
+  flex: 2;
+  color: #007ec6;
+  font-size: 14px;
+  padding-right: 0px;
+  text-align: left;
+}
+
+.release-badge {
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  padding: 0px 0px;
+  background-color: #007ec6;
+  border-radius: 0px;
+  text-decoration: none;
+  min-width: 100%;
+}
+
+.release-badge:hover {
+  color: #fff;
+}

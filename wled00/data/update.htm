@@ -4,32 +4,30 @@
 	<meta content='width=device-width' name='viewport'>
 	<title>WLED Update</title>
 	<script>
-		function B() { window.history.back(); }
-		function U() { document.getElementById("uf").style.display="none";document.getElementById("msg").style.display="block"; }
-		function GetV() {/*injected values here*/}
 	</script>
 	<style>
 		@import url("style.css");
 	</style>
 </head>
 
-<body onload="GetV()">
+<body onload="GetV(); fetchLatestRelease(); fetchEspInfo();">
 	<h2>WLED Software Update</h2>
 	<form method='POST' action='./update' id='uf' enctype='multipart/form-data' onsubmit="U()">
-		Installed version: <span class="sip">##VERSION##</span><br><br>
-		Download the latest binary: 
-		<br>
-		<a href="https://github.com/Jacobnordvall/WLED/releases" target="_blank" 
-		
-		style="vertical-align: text-bottom; display: inline-flex; width: 10px; height: 30px; align-items: center; justify-content: center;"">
-
-		<img src="https://img.shields.io/github/v/tag/jacobnordvall/WLED?style=for-the-badge&label=Release&link=https%3A%2F%2Fgithub.com%2FJacobnordvall%2FWLED%2Freleases"></a><br>
-		<br>
+		Installed version: <span class="sip">##VERSION##</span><br>
+		<div id="esp-info">Finding your ESP version...</div><br>
+		Download the latest binary: <br><a href="https://github.com/Jacobnordvall/WLED/releases" target="_blank"
+		style="vertical-align: text-bottom; display: inline-flex;">
+		<img src="https://img.shields.io/github/v/tag/jacobnordvall/WLED?style=for-the-badge&label=Latest&labelColor=%23272935&link=https%3A%2F%2Fgithub.com%2FJacobnordvall%2FWLED%2Freleases"></a><br>
+		<div id="release-files"><p>Loading release files...<br>(Click image above if not working)</p></div><br><br>
 		<input type='file' name='update' required><br> <!--should have accept='.bin', but it prevents file upload from android app-->
 		<button type="button" onclick="B()">Back</button>
 		<button type="submit">Update!</button>
 	
 	</form>
 	<div id="msg"><b>Updating...</b><br>Please do not close or refresh the page :)</div>
+
+	
+		<!-- Link to the external JavaScript file -->
+		<script src="common.js"></script>
 </body>
 </html>
