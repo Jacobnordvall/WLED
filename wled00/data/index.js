@@ -732,11 +732,11 @@ ${i.opt&0x100?inforow("Debug","<button class=\"btn btn-xs\" onclick=\"requestJso
 ${inforow("Estimated current",pwru)}
 ${inforow("Uptime",getRuntimeStr(i.uptime))}
 <tr><td colspan="2"><hr style="height:2px; border-width:0; color:var(--c-6); background-color:var(--c-6);"></td></tr>
-${inforow("Build",i.vid)}
-${inforow("Filesystem",Math.round(i.fs.u*100/i.fs.t) + "%")}
-${inforow("Signal strength",i.wifi.signal +"%")}
 ${inforow("Average FPS",i.leds.fps+(" FPS"))}
-${inforow("Free heap",(i.freeheap/1024).toFixed(1)," kB")}
+${inforow("Filesystem",Math.round(i.fs.u*100/i.fs.t) + "%")}
+${inforow("Used heap", (((i.totalheap - i.freeheap) / i.totalheap) * 100).toFixed(0), "%")}
+${inforow("Signal strength",i.wifi.signal +"%")}
+${inforow("MAC address",i.mac)}
 </table>`;
 	gId('kv').innerHTML = cn;
 	//  update all sliders in Info
@@ -751,7 +751,8 @@ ${inforow("Build",i.vid)}
 ${inforow("Signal strength",i.wifi.signal +"% ("+ i.wifi.rssi, " dBm)")}
 ${inforow("Uptime",getRuntimeStr(i.uptime))}
 ${inforow("Time",i.time)}
-${inforow("Free heap",(i.freeheap/1024).toFixed(1)," kB")}
+${inforow("Free heap",(i.totalheap/1024).toFixed(0)," kB")}
+${inforow("Free heap",(i.freeheap/1024).toFixed(0)," kB")}
 ${i.psram?inforow("Free PSRAM",(i.psram/1024).toFixed(1)," kB"):""}
 ${inforow("Estimated current",pwru)}
 ${inforow("Average FPS",i.leds.fps)}
