@@ -151,28 +151,30 @@ Timeout: <input name="ET" type="number" min="1" max="65000" required> ms<br>
 Force max brightness: <input type="checkbox" name="FB"><br>
 Disable realtime gamma correction: <input type="checkbox" name="RG"><br>
 Realtime LED offset: <input name="WO" type="number" min="-255" max="255" required>
-<hr class="sml">
-<h3>Alexa Voice Assistant</h3>
+
 <div id="NoAlexa" class="hide">
-	<i class="warn">This firmware build does not include Alexa support.<br></i><br>
+	<!-- <i class="warn">This firmware build does not include Alexa support.<br></i><br> -->
 </div>
 <div id="Alexa">
+<hr class="sml">
+<h3>Alexa Voice Assistant</h3>
 Emulate Alexa device: <input type="checkbox" name="AL"><br>
 Alexa invocation name: <input type="text" name="AI" maxlength="32"><br>
 Also emulate devices to call the first <input name="AP" type="number" class="s" min="0" max="9"> presets<br><br>
 </div>
+
+<div id="NoMQTT" class="hide">
+	<!-- <i class="warn">This firmware build does not include MQTT support.<br></i> -->
+</div>
+<div id="MQTT">
 <hr class="sml">
 <div class="warn">&#9888; <b>MQTT and Hue sync all connect to external hosts!<br>
-This may impact the responsiveness of WLED.</b><br>
+			This may impact the responsiveness of WLED.</b><br>
 </div>
 For best results, only use one of these services at a time.<br>
 (alternatively, connect a second ESP to them and use the UDP sync)
 <hr class="sml">
 <h3>MQTT</h3>
-<div id="NoMQTT" class="hide">
-	<i class="warn">This firmware build does not include MQTT support.<br></i>
-</div>
-<div id="MQTT">
 Enable MQTT: <input type="checkbox" name="MQ"><br>
 Broker: <input type="text" name="MS" maxlength="32">
 Port: <input name="MQPORT" type="number" min="1" max="65535" class="d5"><br>
@@ -187,11 +189,11 @@ Publish on button press: <input type="checkbox" name="BM"><br>
 Retain brightness & color messages: <input type="checkbox" name="RT"><br>
 <i>Reboot required to apply changes. </i><a href="https://kno.wled.ge/interfaces/mqtt/" target="_blank">MQTT info</a>
 </div>
-<h3>Philips Hue</h3>
 <div id="NoHue" class="hide">
-	<em class="warn">This firmware build does not include Philips Hue support.<br></em>
+	<!-- <em class="warn">This firmware build does not include Philips Hue support.<br></em> -->
 </div>
 <div id="Hue">
+<h3>Philips Hue</h3>
 <i>You can find the bridge IP and the light number in the 'About' section of the hue app.</i><br>
 Poll Hue light <input name="HL" type="number" min="1" max="99" > every <input name="HI" type="number" min="100" max="65000"> ms: <input type="checkbox" name="HP"><br>
 Then, receive <input type="checkbox" name="HO"> On/Off, <input type="checkbox" name="HB"> Brightness, and <input type="checkbox" name="HC"> Color<br>
@@ -204,11 +206,11 @@ Hue Bridge IP:<br>
 (when first connecting)<br>
 Hue status: <span class="sip"> Disabled in this build </span>
 </div>
-<h3>Serial</h3>
 <div id="NoSerial" class="hide">
-	<em class="warn">This firmware build does not support Serial interface.<br></em>
+	<!-- <em class="warn">This firmware build does not support Serial interface.<br></em> -->
 </div>
 <div id="Serial">
+<h3>Serial</h3>
 Baud rate:
 <select name=BD>
 <option value=1152>115200</option>
