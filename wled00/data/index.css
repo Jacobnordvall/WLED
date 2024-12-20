@@ -1073,7 +1073,7 @@ input[type=number],
 input[type=text] {
 	background: var(--c-3);
 	color: var(--c-f);
-	border: 0 solid var(--c-2);
+	border: 1px, solid var(--c-6);
 	border-radius: 10px;
 	padding: 8px;
 	/*margin: 6px 6px 6px 0;*/
@@ -1096,7 +1096,7 @@ input[type=text] {
 
 input[type=number]:focus,
 input[type=text]:focus {
-	background: var(--c-6);
+	background: var(--c-3-3);
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -1271,7 +1271,7 @@ TD .revchkl {
 	top: 0;
 	bottom: 0;
 	left: 0;
-	background-color: var(--c-3);
+	/*background-color: var(--c-3-2); this breacks checkboxes, what is this mess of relying on codes in 20diffrent places???*/
 	border: 1px solid var(--c-5);
 }
 
@@ -1288,10 +1288,11 @@ TD .revchkl {
 	border-radius: 10px;
 }
 
+/* This breaks the filter search checkboxes hover color. wrong color applied. why?
 .radio:hover input ~ .radiomark,
 .check:hover input ~ .checkmark {
-	background-color: var(--c-5);
-}
+	background-color: var(--c-3-3);
+}*/
 
 .checkmark:after, .radiomark:after {
 	content: "";

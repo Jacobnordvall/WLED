@@ -757,6 +757,7 @@ ${i.psram?inforow("Free PSRAM",(i.psram/1024).toFixed(1)," kB"):""}
 ${inforow("Estimated current",pwru)}
 ${inforow("Average FPS",i.leds.fps)}
 ${inforow("MAC address",i.mac)}
+${inforow("MAC address", i.mac.replace(/([a-f0-9]{2})(?=[a-f0-9]{2})/g, '$1:'))}
 ${inforow("CPU clock",i.clock," MHz")}
 ${inforow("Flash size",i.flash," MB")}
 ${inforow("Filesystem",i.fs.u + "/" + i.fs.t + " kB (" +Math.round(i.fs.u*100/i.fs.t) + "%)")}
