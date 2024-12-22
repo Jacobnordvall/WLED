@@ -207,26 +207,20 @@ function fetchEspInfo() {
 //Goes back to last entry in main page aka index.htm
 function goBackToMainPage() {
     let stepsBack = 0;
+    const mainPages = ['/#Colors', '/#Effects', '/#Segments', '/#Presets'];
 
-    function checkHistory() {
+    function isMainPage() {
         const currentPage = window.location.href;
-
-        // Define conditions for your "main" pages
-        if (currentPage.includes('/#Colors') || 
-            currentPage.includes('/#Effects') || 
-            currentPage.includes('/#Segments') || 
-            currentPage.includes('/#Presets')) {
-            return true;
-        }
-        return false;
+        return mainPages.some(page => currentPage.includes(page));
     }
 
     function navigateBack() {
-        if (stepsBack < 20) { // Prevent infinite loop
+        if (stepsBack < 60) { // Prevent infinite loop
             stepsBack++;
             window.history.back();
+
             setTimeout(() => {
-                if (!checkHistory()) {
+                if (!isMainPage()) {
                     navigateBack();
                 }
             }, 100); // Wait for navigation to take effect
@@ -236,7 +230,7 @@ function goBackToMainPage() {
         }
     }
 
-    if (!checkHistory()) {
+    if (!isMainPage()) {
         navigateBack();
     } else {
         // If already on a main page
