@@ -296,12 +296,18 @@ button {
 	color: var(--c-d);
 }
 
+.tablinks {
+	top: -109.5px !important; /* Adjust for fade height */
+}
+
 .bot {
 	position: fixed;
-	bottom: 0;
+	bottom: 100;
 	left: 0;
 	width: 100%;
 	background-color: #131419;
+	padding: 0 10px; /* Add padding to the left and right sides */
+	box-sizing: border-box; /* Include padding in the element's width */
 
 }
 .bot::before {
@@ -312,8 +318,7 @@ button {
 	left: 0;
 	width: 100%;
 	height: 20px; /* Adjust fade height */
-	background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(19, 20, 25, 0.5)); 
-	/* Adjust the second color for the desired full-color fade effect */
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(19, 20, 25, 0.5)); 	/* Adjust the second color for the desired full-color fade effect */
 	pointer-events: none;
 }
 
@@ -325,6 +330,7 @@ button {
 	font-size: 17px;
 	color: var(--c-c);
 	min-width: 44px;
+	border-radius: 10px;
 }
 
 .top button {
@@ -336,6 +342,8 @@ button {
 	padding: var(--bbp);
 	width: 25%;
 	margin: 0;
+	position: relative; /* Make the offset relative to the button's original position */
+	top: -12px !important; /* Adjust this value to control the upward offset */
 }
 
 .tab button:hover {
@@ -343,9 +351,17 @@ button {
 	color: var(--c-e); /* Icoon hover */
 }
 
+/* Remove hover effect */
+.tablinks:hover {
+    background-color: transparent !important; /* Same as default background */
+	color: var(--c-c) !important; /* Same as default color */
+}
+
 .tab button.active {
-	background-color: var(--c-2) !important;
-	color: var(--c-f);
+	background-color: var(--c-3) !important;
+	/* background-color: var(--c-x) !important; /*Future color? */
+	color: var(--c-c);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle outer shadow */
 }
 
 .active {

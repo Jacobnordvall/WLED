@@ -176,7 +176,7 @@ async function fetchLatestRelease() {
 
     } catch (error) {
         console.error("Error fetching release information:", error); // Log the error to the console
-        releaseFilesDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+        releaseFilesDiv.innerHTML = `<p style="color: red;">Error: ${error.message}<br>(Click image above if not working)`;
     }
 }
 
@@ -196,7 +196,7 @@ function fetchEspInfo() {
         })
         .then((data) => {
             const espArch = data.arch || "Unknown";
-            document.getElementById("esp-info").textContent = `You need the ${espArch}`+` version`;
+            document.getElementById("esp-info").innerHTML = `You need the <span style="color: #fa0;">${espArch}</span> version`;
         })
         .catch((error) => {
             console.error("Error fetching ESP info:", error);

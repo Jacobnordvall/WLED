@@ -44,6 +44,12 @@ button.sml {
   min-width: 40px;
   margin: 0 0 0 10px;
 }
+.btn-file {
+  color: #fff; /* Change text color for file name display */
+  font-family: Verdana, sans-serif;
+  border-radius: 6px;
+  padding: 4px;
+}
 #scan {
   margin-top: -10px;
 }
@@ -71,23 +77,26 @@ button.sml {
   color: #fa0;
 }
 input[type="file"]::-webkit-file-upload-button {
-  background: #36394c;
+  background: #303442;
   color: #fff;
   font-family: Verdana, sans-serif;
-  border: 0ch solid #36394c;
+  border: 0ch solid #303442;
   padding: 0.em 0.em;
   border-radius: 2px;
   cursor: pointer;
+  height: 32px;
 }
 
 input[type="file"]::-webkit-file-upload-button:hover {
-  background: #444955; /* Darker background on hover */
-  border-color: #444955;
+  background: #36394c; /* Darker background on hover */
+  border-color: #36394c;
 }
 
 input[type="file"] {
   color: #fff; /* Change text color for file name display */
   font-family: Verdana, sans-serif;
+  border-radius: 6px;
+  border: 0.0ch solid #272935 !important;
 }
 input {
   background: #272935;
@@ -104,6 +113,7 @@ input[type="password"],
 select {
     font-size: medium;
     margin: 2px;
+    border-radius: 6px;
   }
 input[type="number"] {
   width: 4em;
@@ -259,7 +269,7 @@ td {
 #release-files {
   display: inline-block;
   width: 354px;
-  margin-top: -15px;
+  margin-top: -25px;
   background: inherit;
   color: inherit;
 }
@@ -275,7 +285,15 @@ td {
   margin: 3px 0px;
   padding: 0px;
   background-color: #272935;
-  border-radius: 0px;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Adds a shadow for depth */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition */
+  position: relative; /* Prevents overlapping by ensuring proper layer context */
+  z-index: 1; /* Lower z-index to allow badge to overlay */
+}
+
+#release-files ul li:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
 }
 
 #release-files ul li .version {
@@ -305,8 +323,26 @@ td {
   border-radius: 0px;
   text-decoration: none;
   min-width: 100%;
+  border-radius: 0 6px 6px 0;
 }
 
 .release-badge:hover {
   color: #fff;
+}
+
+.badge {
+  display: block; /* Makes the badge behave like a block element */
+  margin: 10px auto; /* Center and add margin */
+  max-width: 100%; /* Ensures responsive sizing */
+  border: 0px solid #272935; /* Border to match the label color */
+  border-radius: 6px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Adds a shadow for depth */
+  transition: transform 0.2s, box-shadow 0.2s; /* Adds hover animation */
+  position: relative; /* Enables layering */
+  z-index: 10; /* Ensures it appears above the release file buttons */
+}
+
+.badge:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5); /* Enhance shadow on hover */
 }
