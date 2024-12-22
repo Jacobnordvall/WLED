@@ -180,7 +180,7 @@ async function fetchLatestRelease() {
     }
 }
 
-//THIS BS BROKIE 
+//THIS BS BROKIE (Only keept in case something uses it. test and remove!)
 function B() { window.history.back(); }
 function U() { document.getElementById("uf").style.display="none";document.getElementById("msg").style.display="block"; }
 function GetV() {/*injected values here*/}
@@ -202,4 +202,44 @@ function fetchEspInfo() {
             console.error("Error fetching ESP info:", error);
             document.getElementById("esp-info").textContent = `Error fetching ESP info: ${error.message}`;
         });
+}
+
+//Goes back to last entry in main page aka index.htm
+function goBackToMainPage() {
+    let stepsBack = 0;
+
+    function checkHistory() {
+        const currentPage = window.location.href;
+
+        // Define conditions for your "main" pages
+        if (currentPage.includes('/#Colors') || 
+            currentPage.includes('/#Effects') || 
+            currentPage.includes('/#Segments') || 
+            currentPage.includes('/#Presets')) {
+            return true;
+        }
+        return false;
+    }
+
+    function navigateBack() {
+        if (stepsBack < 20) { // Prevent infinite loop
+            stepsBack++;
+            window.history.back();
+            setTimeout(() => {
+                if (!checkHistory()) {
+                    navigateBack();
+                }
+            }, 100); // Wait for navigation to take effect
+        } else {
+            // Fallback if no "main" page is found
+            window.location = '/';
+        }
+    }
+
+    if (!checkHistory()) {
+        navigateBack();
+    } else {
+        // If already on a main page
+        console.log("You're already on a main page!");
+    }
 }
