@@ -215,7 +215,7 @@ function goBackToMainPage() {
     }
 
     function navigateBack() {
-        if (stepsBack < 60) { // Prevent infinite loop
+        if (stepsBack < 20) { // Prevent infinite loop
             stepsBack++;
             window.history.back();
 
