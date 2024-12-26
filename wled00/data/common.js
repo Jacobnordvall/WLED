@@ -180,8 +180,7 @@ async function fetchLatestRelease() {
     }
 }
 
-//THIS BS BROKIE (Only keept in case something uses it. test and remove!)
-function B() { window.history.back(); }
+//Moved from update.htm
 function U() { document.getElementById("uf").style.display="none";document.getElementById("msg").style.display="block"; }
 function GetV() {/*injected values here*/}
 
@@ -214,3 +213,6 @@ function goBackToMainPage() {
         window.location = '/';
     }
 }
+
+function goBackToSettingsPage()
+{ window.location = '/settings';}
