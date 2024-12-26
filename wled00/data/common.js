@@ -204,36 +204,13 @@ function fetchEspInfo() {
         });
 }
 
-//Goes back to last entry in main page aka index.htm
 function goBackToMainPage() {
-    let stepsBack = 0;
-    const mainPages = ['/#Colors', '/#Effects', '/#Segments', '/#Presets'];
-
-    function isMainPage() {
-        const currentPage = window.location.href;
-        return mainPages.some(page => currentPage.includes(page));
-    }
-
-    function navigateBack() {
-        if (stepsBack < 20) { // Prevent infinite loop
-            stepsBack++;
-            window.history.back();
-
-            setTimeout(() => {
-                if (!isMainPage()) {
-                    navigateBack();
-                }
-            }, 100); // Wait for navigation to take effect
-        } else {
-            // Fallback if no "main" page is found
-            window.location = '/';
-        }
-    }
-
-    if (!isMainPage()) {
-        navigateBack();
+    const lastMainPage = localStorage.getItem('lastMainPage');
+    if (lastMainPage) {
+        console.log(`Navigating back to last main page: ${lastMainPage}`);
+        window.location.href = lastMainPage;
     } else {
-        // If already on a main page
-        console.log("You're already on a main page!");
+        console.log("No last main page found, navigating to index.");
+        window.location.href = '/index.htm';
     }
 }

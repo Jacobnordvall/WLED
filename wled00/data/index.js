@@ -3280,3 +3280,13 @@ _C.addEventListener('touchstart', lock, false);
 _C.addEventListener('mouseout', move, false);
 _C.addEventListener('mouseup', move, false);
 _C.addEventListener('touchend', move, false);
+
+function storeLastMainPage() {
+    const mainPages = ['/#Colors', '/#Effects', '/#Segments', '/#Presets', '/index.htm'];
+    const currentPage = window.location.href;
+
+    if (mainPages.some(page => currentPage.includes(page))) {
+        localStorage.setItem('lastMainPage', currentPage);
+        console.log(`Stored last main page: ${currentPage}`);
+    }
+}
