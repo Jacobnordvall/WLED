@@ -211,6 +211,6 @@ function goBackToMainPage() {
         window.location.href = lastMainPage;
     } else {
         console.log("No last main page found, navigating to index.");
-        window.location.href = '/index.htm';
+        window.location = '/';
     }
 }

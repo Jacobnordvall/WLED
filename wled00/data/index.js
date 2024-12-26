@@ -3282,7 +3282,7 @@ _C.addEventListener('mouseup', move, false);
 _C.addEventListener('touchend', move, false);
 
 function storeLastMainPage() {
-    const mainPages = ['/#Colors', '/#Effects', '/#Segments', '/#Presets', '/index.htm'];
+    const mainPages = ['/#Colors', '/#Effects', '/#Segments', '/#Presets'];
     const currentPage = window.location.href;
 
     if (mainPages.some(page => currentPage.includes(page))) {
