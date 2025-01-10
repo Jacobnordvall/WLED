@@ -733,8 +733,17 @@ ${inforow("Estimated current",pwru)}
 ${inforow("Uptime",getRuntimeStr(i.uptime))}
 <tr><td colspan="2"><hr style="height:2px; border-width:0; color:var(--c-6); background-color:var(--c-6);"></td></tr>
 ${inforow("Average FPS",i.leds.fps+(" FPS"))}
-${inforow("Filesystem",Math.round(i.fs.u*100/i.fs.t) + "%")}
-${inforow("Used heap", (((i.totalheap - i.freeheap) / i.totalheap) * 100).toFixed(0), "%")}
+${inforow("Filesystem",Math.round(i.fs.u*100/i.fs.t) + "%")}`;
+
+  // For ESP8266/ESP01, display free heap in kB
+  if (i.platform === "ESP8266" || i.platform === "ESP01") {
+    cn += inforow("Free heap", (i.freeheap / 1024).toFixed(0), " kB");
+  } else {
+    // For other platforms, display used heap percentage
+    cn += inforow("Used heap", (((i.totalheap - i.freeheap) / i.totalheap) * 100).toFixed(0), "%");
+  }
+
+  cn += `
 ${inforow("Signal strength",i.wifi.signal +"%")}
 ${inforow("MAC address",i.mac)}
 </table>`;
