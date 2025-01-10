@@ -760,7 +760,9 @@ void serializeInfo(JsonObject root)
 #endif
 
   root[F("freeheap")] = ESP.getFreeHeap();
-  root[F("totalheap")] = ESP.getHeapSize();
+  #if !defined(ESP8266) && !defined(ESP01)
+  root[F("totalheap")] = ESP.getHeapSize();  // Will only run on ESP32 and other platforms that support getHeapSize()
+  #endif
   #if defined(ARDUINO_ARCH_ESP32)
   if (psramSafe && psramFound()) root[F("psram")] = ESP.getFreePsram();
   #endif
