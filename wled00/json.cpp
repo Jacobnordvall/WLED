@@ -338,7 +338,7 @@ bool deserializeState(JsonObject root, byte callMode, byte presetId)
 
 #ifndef WLED_DISABLE_MODE_BLEND
   blendingStyle = root[F("bs")] | blendingStyle;
-  blendingStyle = constrain(blendingStyle, 0, BLEND_STYLE_COUNT-1);
+  blendingStyle &= 0x1F;
 #endif
 
   // temporary transition (applies only once)
@@ -1062,13 +1062,13 @@ void serveJson(AsyncWebServerRequest* request)
         return;
     }
 
-    if (!requestJSONBufferLock(17)) {
-        serveJsonError(request, 503, ERR_NOBUF);
-        return;
-    }
-    // releaseJSONBufferLock() will be called when "response" is destroyed (from AsyncWebServer)
-    // make sure you delete "response" if no "request->send(response);" is made
-    LockedJsonResponse *response = new LockedJsonResponse(pDoc, subJson==JSON_PATH_FXDATA || subJson==JSON_PATH_EFFECTS); // will clear and convert JsonDocument into JsonArray if necessary
+  if (!requestJSONBufferLock(17)) {
+    request->deferResponse();    
+    return;
+  }
+  // releaseJSONBufferLock() will be called when "response" is destroyed (from AsyncWebServer)
+  // make sure you delete "response" if no "request->send(response);" is made
+  LockedJsonResponse *response = new LockedJsonResponse(pDoc, subJson==JSON_PATH_FXDATA || subJson==JSON_PATH_EFFECTS); // will clear and convert JsonDocument into JsonArray if necessary
 
     JsonVariant lDoc = response->getRoot();
 
