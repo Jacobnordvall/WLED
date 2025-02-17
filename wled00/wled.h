@@ -15,7 +15,7 @@
 // ESP8266-01 (blue) got too little storage space to work with WLED. 0.10.2 is the last release supporting this unit.
 
 // ESP8266-01 (black) has 1MB flash and can thus fit the whole program, although OTA update is not possible. Use 1M(128K SPIFFS).
-// 2-step OTA may still be possible: https://github.com/Aircoookie/WLED/issues/2040#issuecomment-981111096
+// 2-step OTA may still be possible: https://github.com/wled-dev/WLED/issues/2040#issuecomment-981111096
 // Uncomment some of the following lines to disable features:
 // Alternatively, with platformio pass your chosen flags to your custom build target in platformio_override.ini
 
@@ -371,7 +371,7 @@ WLED_GLOBAL bool noWifiSleep _INIT(false);
 WLED_GLOBAL bool force802_3g _INIT(false);
 #endif // WLED_SAVE_RAM
 #ifdef ARDUINO_ARCH_ESP32
-  #if defined(LOLIN_WIFI_FIX) && (defined(ARDUINO_ARCH_ESP32C3) || defined(ARDUINO_ARCH_ESP32S2) || defined(ARDUINO_ARCH_ESP32S3))
+  #if defined(LOLIN_WIFI_FIX) && (defined(CONFIG_IDF_TARGET_ESP32C3) || defined(CONFIG_IDF_TARGET_ESP32S2) || defined(CONFIG_IDF_TARGET_ESP32S3))
 WLED_GLOBAL uint8_t txPower _INIT(WIFI_POWER_8_5dBm);
   #else
 WLED_GLOBAL uint8_t txPower _INIT(WIFI_POWER_19_5dBm);
@@ -398,6 +398,9 @@ WLED_GLOBAL byte bootPreset   _INIT(0);                   // save preset to load
 WLED_GLOBAL bool useGlobalLedBuffer _INIT(false); // double buffering disabled on ESP8266
 #else
 WLED_GLOBAL bool useGlobalLedBuffer _INIT(true);  // double buffering enabled on ESP32
+  #ifndef CONFIG_IDF_TARGET_ESP32C3
+WLED_GLOBAL bool useParallelI2S     _INIT(false); // parallel I2S for ESP32
+  #endif
 #endif
 #ifdef WLED_USE_IC_CCT
 WLED_GLOBAL bool cctICused          _INIT(true);  // CCT IC used (Athom 15W bulbs)
@@ -893,7 +896,7 @@ WLED_GLOBAL bool e131NewData _INIT(false);
 // led fx library object
 WLED_GLOBAL BusManager busses _INIT(BusManager());
 WLED_GLOBAL WS2812FX strip _INIT(WS2812FX());
-WLED_GLOBAL BusConfig* busConfigs[WLED_MAX_BUSSES+WLED_MIN_VIRTUAL_BUSSES] _INIT({nullptr}); //temporary, to remember values from network callback until after
+WLED_GLOBAL std::vector<BusConfig> busConfigs; //temporary, to remember values from network callback until after
 WLED_GLOBAL bool doInitBusses _INIT(false);
 WLED_GLOBAL int8_t loadLedmap _INIT(-1);
 WLED_GLOBAL uint8_t currentLedmap _INIT(0);
